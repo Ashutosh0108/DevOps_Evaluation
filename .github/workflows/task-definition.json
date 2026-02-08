@@ -1,0 +1,32 @@
+{
+    "family": "devops-eval-task",
+    "containerDefinitions": [
+        {
+            "name": "devops-eval-container",
+            "image": "736116164296.dkr.ecr.ap-south-1.amazonaws.com/devops-eval-app:latest",
+            "cpu": 128,
+            "memory": 128,
+            "memoryReservation": 100,
+            "portMappings": [
+                {
+                    "containerPort": 5000,
+                    "hostPort": 80,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/devops-eval-task",
+                    "awslogs-region": "ap-south-1",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            }
+        }
+    ],
+    "requiresCompatibilities": ["EC2"],
+    "networkMode": "bridge",
+    "cpu": "256",
+    "memory": "512"
+}
